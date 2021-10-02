@@ -1,0 +1,20 @@
+[
+  {
+    "title": "My first title",
+    "description" : "My first description",
+    "expectedResult": "My first expected result",
+    "testSteps": [
+      "My first test step",
+      "My second test step"
+    ]
+  },
+  {
+    "title": "My second title",
+    "description" : "My second description",
+    "expectedResult": "My second expected result",
+    "testSteps": [
+      "My third test step",
+      "My fourth test step"
+    ]
+  }
+]

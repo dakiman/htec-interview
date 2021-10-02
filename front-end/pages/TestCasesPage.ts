@@ -50,6 +50,7 @@ export default class TestCasesPage extends BasePageObject{
 
     public async inputTestSteps(steps: Array<string>) {
         // TODO review, 1 more input than required is added
+        // TODO review to replace with forEach
         for (const step of steps) {
             let index = steps.indexOf(step);
             await this.clickAddTestStep();
