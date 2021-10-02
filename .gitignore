@@ -1,3 +1,5 @@
 /node_modules
 /.idea
 /reports
+/front-end/reports
+/back-end/reports

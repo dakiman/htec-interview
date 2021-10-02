@@ -1,4 +1,5 @@
 import { browser } from "protractor";
+const JasmineConsoleReporter = require('jasmine-console-reporter');
 
 let HtmlReporter = require('protractor-beautiful-reporter');
 
@@ -15,7 +16,7 @@ exports.config = {
         await browser.manage().window().maximize();
         
         jasmine.getEnv().addReporter(new HtmlReporter({
-            baseDirectory: './reports',
+            baseDirectory: './front-end/reports',
             screenshotsSubfolder: 'screenshots',
             gatherBrowserLogs: true,
             preserveDirectory: true,
@@ -25,5 +26,7 @@ exports.config = {
                 totalDurationFormat: "hms"
             },
         }).getJasmine2Reporter());
+
+        jasmine.getEnv().addReporter(new JasmineConsoleReporter());
     }
 };

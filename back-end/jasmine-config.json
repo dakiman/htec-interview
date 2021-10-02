@@ -1,0 +1,11 @@
+{
+  "spec_dir": "./back-end",
+  "spec_files": [
+    "**/?(*.)+(spec|test).[jt]s?(x)"
+  ],
+  "helpers": [
+    "bootstrap/**/*.ts"
+  ],
+  "stopSpecOnExpectationFailure": true,
+  "random": true
+}

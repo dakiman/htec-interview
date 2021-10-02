@@ -40,4 +40,10 @@ describe('My front-end test suite', () => {
         expect(imFeelingLuckyText).toBe('Ме следи среќа');
     })
 
+    it('Fail and success', async () => {
+        expect(1).toBe(2);
+        expect(1).toBe(1);
+        expect('Daki').toBe("Laki")
+    })
+
 })
