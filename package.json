@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test-fe": "npx webdriver-manager update && npx protractor front-end/launch.js"
+    "test-fe": "npx webdriver-manager update && npx protractor front-end/launch.js",
+    "test-be": "npx jasmine-ts back-end/specs/*.spec.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/jasmine": "^3.9.1",
     "@types/node": "^16.10.1",
+    "axios": "^0.22.0",
     "jasmine": "^3.9.0",
+    "jasmine-ts": "^0.4.0",
     "protractor": "^7.0.0",
     "protractor-beautiful-reporter": "^1.3.6",
     "ts-node": "^10.2.1",
