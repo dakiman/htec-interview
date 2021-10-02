@@ -4,8 +4,19 @@ const JasmineConsoleReporter = require('jasmine-console-reporter');
 
 let HtmlReporter = require('protractor-beautiful-reporter');
 
+//TODO maybe move to bootstrap
+const result = require('dotenv').config({
+    path: './.env',
+});
+
+if (result.error) {
+    console.error('Couldnt find environment variables. Make sure you have a `.env` file prepared');
+    throw result.error;
+}
+
 exports.config = {
 
+    //TODO replace with configuration prop
     baseUrl: 'https://qa-sandbox.ni.htec.rs',
     framework: 'jasmine2',
 
@@ -22,7 +33,6 @@ exports.config = {
     ],
 
     onPrepare: async function () {
-        //TODO review if is needed
         browser.waitForAngularEnabled(false);
         await browser.manage().window().maximize();
 
