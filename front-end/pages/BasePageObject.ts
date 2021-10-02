@@ -7,11 +7,12 @@ export abstract class BasePageObject {
     private defaultTimeout = Configuration.ELEMENT_TIMEOUT;
 
     protected async typeInInput(selector: ElementFinder, text: string, timeout = this.defaultTimeout): Promise<void> {
-        await this.clickButtonWhenClickable(selector, timeout);
+        //TODO review
+        // await this.clickWhenClickable(selector, timeout);
         await selector.sendKeys(text);
     }
 
-    protected async clickButtonWhenClickable(element: ElementFinder, timeout = this.defaultTimeout): Promise<void> {
+    protected async clickWhenClickable(element: ElementFinder, timeout = this.defaultTimeout): Promise<void> {
         await browser.wait(ExpectedConditions.elementToBeClickable(element), timeout,
             `Element ${element.locator().value} did not become CLICKABLE within ${timeout / 1000} seconds`
         );

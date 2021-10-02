@@ -15,6 +15,6 @@ export default class LoginPage extends BasePageObject {
     }
 
     public async clickLogin() {
-        await this.clickButtonWhenClickable(this.loginButton);
+        await this.clickWhenClickable(this.loginButton);
     }
 }

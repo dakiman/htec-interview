@@ -6,6 +6,6 @@ export default class SidebarComponent extends BasePageObject {
     private testCasesNavButton = element(by.className('menu')).element(by.css('[href="/testcases"]'));
 
     public async clickTestCasesNavButton() {
-        await this.clickButtonWhenClickable(this.testCasesNavButton);
+        await this.clickWhenClickable(this.testCasesNavButton);
     }
 }

@@ -3,15 +3,17 @@ import {by, element} from "protractor";
 
 export default class TestCasesPage extends BasePageObject{
     private addNewTestCaseButton = element(by.css('[href="/new-testcase"]'));
-    private titleInput = element(by.css(''));
-    private descriptionInput = element(by.css(''));
-    private expectedResultInput = element(by.css(''));
+    private titleInput = element(by.css('[name="title"]'));
+    // meta tag also has name=description (bug)
+    private descriptionInput = element(by.className('main')).element(by.css('[name="description"]'));
+    private expectedResultInput = element(by.css('[name="expected_result"]'));
     //test step inputs todo
-    private testAutomatedSwitch = element(by.css(''));
-    private submitButton = element(by.css(''));
+    private testStepInput = element(by.id("step-0"))
+    private testAutomatedSwitch = element(by.className('react-switch-bg'));
+    private submitButton = element(by.className('main')).element(by.buttonText('Submit'));
 
     public async clickAddNewTestCase() {
-        await this.clickButtonWhenClickable(this.addNewTestCaseButton)
+        await this.clickWhenClickable(this.addNewTestCaseButton)
     }
 
     public async inputTitle(text: string) {
@@ -27,10 +29,14 @@ export default class TestCasesPage extends BasePageObject{
     }
 
     public async toggleAutomatedTest() {
-        await this.clickButtonWhenClickable(this.testAutomatedSwitch);
+        await this.clickWhenClickable(this.testAutomatedSwitch);
     }
 
     public async clickSubmit() {
-        await this.clickButtonWhenClickable(this.submitButton);
+        await this.clickWhenClickable(this.submitButton);
+    }
+
+    public async inputTestStep(text: string) {
+        await this.typeInInput(this.testStepInput, text)
     }
 }
