@@ -1,49 +1,23 @@
 import {browser, by, element} from "protractor"
-import {GoogleSearchPage} from "../pages/GoogleSearchPage.po";
+import LoginPage from "../pages/LoginPage";
+import BrowserUtils from "../utils/WebDriverUtils";
 
 
 describe('My front-end test suite', () => {
 
-    let googlePage: GoogleSearchPage = new GoogleSearchPage();
+    let loginPage: LoginPage = new LoginPage();
 
-    beforeEach(async () => {
-        await browser.get('http://google.com');
+    beforeAll(async () => {
+        await browser.driver.navigate().to('https://qa-sandbox.ni.htec.rs/testcases')
+        await loginPage.inputEmail('dvancov@hotmail.com');
+        await loginPage.inputPassword('Dakidaki123');
+        await loginPage.clickLogin();
+        await BrowserUtils.waitUntilUrlContains('/dashboard')
     })
 
-    it('Goes to google', async () => {
-        let currentUrl = await browser.getCurrentUrl();
-
-        expect(currentUrl).toContain('google');
-    })
-
-    it('Searches Google', async () => {
-        let queryString = 'my_query'
-        await googlePage.inputQueryString(queryString);
-        await googlePage.clickSearchButton();
-
-        let currentUrl = await browser.getCurrentUrl();
-        expect(currentUrl).toContain(queryString);
-    })
-
-    it('Confirms checkbox', async () => {
-        let queryString = 'my_query'
-        await googlePage.inputQueryString(queryString);
-
-        let currentText = await googlePage.getSearchBoxText();
-
-        expect(currentText).toBe(queryString);
-    })
-
-    it('Im feeling lucky', async () => {
-        let imFeelingLuckyText = await googlePage.getImFeelingLuckyButtonText();
-
-        expect(imFeelingLuckyText).toBe('Ме следи среќа');
-    })
-
-    it('Fail and success', async () => {
-        expect(1).toBe(2);
-        expect(1).toBe(1);
-        expect('Daki').toBe("Laki")
+    it('Is logged in', async () => {
+        let isUrlDashboard = await BrowserUtils.doesUrlContain('/dashboard')
+        expect(isUrlDashboard).toBe(true);
     })
 
 })

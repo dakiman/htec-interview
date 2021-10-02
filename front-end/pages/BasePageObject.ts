@@ -2,26 +2,23 @@ import {browser, by, ElementFinder, ExpectedConditions} from "protractor";
 
 export abstract class BasePageObject {
 
-    protected async clearInputFieldAndType(selector: ElementFinder, text: string): Promise<void> {
-        await this.waitForElementToBeClickableAndClick(selector);
-        await selector.clear();
+    //millis
+    //TODO Replace with configuration
+    private defaultTimeout: number = 10000;
+
+    protected async typeInInput(selector: ElementFinder, text: string, timeout = this.defaultTimeout): Promise<void> {
+        await this.clickButtonWhenClickable(selector, timeout);
         await selector.sendKeys(text);
     }
 
-    protected async waitForElementToBeClickableAndClick(selector: ElementFinder): Promise<void> {
-        await browser.wait(ExpectedConditions.elementToBeClickable(selector), 10000,
-            `Element ${selector.locator().value} was not CLICKABLE within 10 seconds...`
+    protected async clickButtonWhenClickable(element: ElementFinder, timeout = this.defaultTimeout): Promise<void> {
+        await browser.wait(ExpectedConditions.elementToBeClickable(element), timeout,
+            `Element ${element.locator().value} did not become CLICKABLE within ${timeout / 1000} seconds`
         );
-        await selector.click();
+        await element.click();
     }
 
-    protected async waitForElementToBeInvisible(selector: ElementFinder): Promise<void> {
-        await browser.wait(ExpectedConditions.invisibilityOf(selector), 10000,
-            `Element ${selector.locator().value} did not become INVISIBLE within 10 seconds...`
-        );
-    }
-
-    protected async isElementDisplayed(selector: ElementFinder, timeout = 2000): Promise<boolean> {
+    protected async isElementVisible(selector: ElementFinder, timeout = this.defaultTimeout): Promise<boolean> {
         return new Promise(resolve => {
             browser.wait(ExpectedConditions.visibilityOf(selector), timeout)
                 .then(() => resolve(true))
@@ -29,16 +26,10 @@ export abstract class BasePageObject {
         });
     }
 
-    protected async waitForElementToBeVisible(selector: ElementFinder): Promise<void> {
-        await browser.wait(ExpectedConditions.visibilityOf(selector), 10000,
-            `Element ${selector.locator().value} was not VISIBLE within 10 seconds...`
+    protected async waitForVisibility(selector: ElementFinder, timeout = this.defaultTimeout): Promise<void> {
+        await browser.wait(ExpectedConditions.visibilityOf(selector), timeout,
+            `Element ${selector.locator().value} was not VISIBLE within ${timeout / 1000} seconds...`
         );
-    }
-
-    protected async selectDropdownOptionByIndex(selector: ElementFinder, index: number): Promise<void> {
-        selector.all(by.tagName('option')).then(options => {
-            options[index].click();
-        });
     }
 
 }
