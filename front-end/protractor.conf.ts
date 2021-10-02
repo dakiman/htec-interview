@@ -1,4 +1,5 @@
-import { browser } from "protractor";
+import {browser} from "protractor";
+
 const JasmineConsoleReporter = require('jasmine-console-reporter');
 
 let HtmlReporter = require('protractor-beautiful-reporter');
@@ -7,6 +8,14 @@ exports.config = {
 
     framework: 'jasmine2',
 
+    capabilities: {
+        browserName: 'chrome',
+
+        chromeOptions: {
+            args: ["--headless", "--disable-gpu", "--window-size=800,600"]
+        }
+    },
+
     specs: [
         './specs/*.ts',
     ],
@@ -14,7 +23,7 @@ exports.config = {
     onPrepare: async function () {
         browser.waitForAngularEnabled(false);
         await browser.manage().window().maximize();
-        
+
         jasmine.getEnv().addReporter(new HtmlReporter({
             baseDirectory: './front-end/reports',
             screenshotsSubfolder: 'screenshots',
