@@ -1,18 +1,15 @@
-import {browser, by, element} from "protractor"
-import LoginPage from "../pages/LoginPage";
 import BrowserUtils from "../utils/WebDriverUtils";
+import LoginActions from "../actions/LoginActions";
+import {browser} from "protractor";
 
 
 describe('My front-end test suite', () => {
 
-    let loginPage: LoginPage = new LoginPage();
+    let loginActions = new LoginActions();
 
     beforeAll(async () => {
-        await browser.driver.navigate().to('https://qa-sandbox.ni.htec.rs/testcases')
-        await loginPage.inputEmail('dvancov@hotmail.com');
-        await loginPage.inputPassword('Dakidaki123');
-        await loginPage.clickLogin();
-        await BrowserUtils.waitUntilUrlContains('/dashboard')
+        console.log(browser.baseUrl);
+        await loginActions.defaultLogin();
     })
 
     it('Is logged in', async () => {

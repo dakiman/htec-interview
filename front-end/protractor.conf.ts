@@ -6,14 +6,15 @@ let HtmlReporter = require('protractor-beautiful-reporter');
 
 exports.config = {
 
+    baseUrl: 'https://qa-sandbox.ni.htec.rs',
     framework: 'jasmine2',
 
     capabilities: {
         browserName: 'chrome',
 
-        chromeOptions: {
-            args: ["--headless", "--disable-gpu", "--window-size=800,600"]
-        }
+        // chromeOptions: {
+        //     args: ["--headless", "--disable-gpu", "--window-size=800,600"]
+        // }
     },
 
     specs: [
@@ -21,6 +22,7 @@ exports.config = {
     ],
 
     onPrepare: async function () {
+        //TODO review if is needed
         browser.waitForAngularEnabled(false);
         await browser.manage().window().maximize();
 
@@ -28,7 +30,7 @@ exports.config = {
             baseDirectory: './front-end/reports',
             screenshotsSubfolder: 'screenshots',
             gatherBrowserLogs: true,
-            preserveDirectory: true,
+            preserveDirectory: false,
             takeScreenShotsOnlyForFailedSpecs: false,
             clientDefaults: {
                 showTotalDurationIn: "header",
