@@ -1,10 +1,10 @@
 import {browser, by, ElementFinder, ExpectedConditions} from "protractor";
+import Configuration from "../../app-config";
 
 export abstract class BasePageObject {
 
     //millis
-    //TODO Replace with configuration
-    private defaultTimeout: number = 10000;
+    private defaultTimeout = Configuration.ELEMENT_TIMEOUT;
 
     protected async typeInInput(selector: ElementFinder, text: string, timeout = this.defaultTimeout): Promise<void> {
         await this.clickButtonWhenClickable(selector, timeout);
@@ -28,7 +28,7 @@ export abstract class BasePageObject {
 
     protected async waitForVisibility(selector: ElementFinder, timeout = this.defaultTimeout): Promise<void> {
         await browser.wait(ExpectedConditions.visibilityOf(selector), timeout,
-            `Element ${selector.locator().value} was not VISIBLE within ${timeout / 1000} seconds...`
+            `Element ${selector.locator().value} did not become VISIBLE within ${timeout / 1000} seconds...`
         );
     }
 

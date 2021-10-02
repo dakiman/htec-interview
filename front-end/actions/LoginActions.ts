@@ -10,10 +10,13 @@ export default class LoginActions {
 
     public async loginForUser(email: string, password: string) {
         await browser.get('/login')
-        await this.loginPage.inputEmail(email);
-        await this.loginPage.inputPassword(password);
-        await this.loginPage.clickLogin();
-        await BrowserUtils.waitUntilUrlContains('/dashboard')
+        //Check whether the user is already logged in
+        if(!await BrowserUtils.doesUrlContain('/dashboard')) {
+            await this.loginPage.inputEmail(email);
+            await this.loginPage.inputPassword(password);
+            await this.loginPage.clickLogin();
+            await BrowserUtils.waitUntilUrlContains('/dashboard')
+        }
     }
 
     public async defaultLogin() {
