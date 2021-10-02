@@ -24,7 +24,7 @@ describe('Add test cases to application', () => {
         await testCasesPage
             .inputExpectedResult('My expected result');
         await testCasesPage
-            .inputTestStep('My test step');
+            .inputTestSteps(['My test step', 'My test step 2']);
         await testCasesPage
             .toggleAutomatedTest();
         await testCasesPage
@@ -32,5 +32,7 @@ describe('Add test cases to application', () => {
 
         expect(await WebDriverUtils.doesUrlContain('/testcases')).toBe(true);
     })
+
+
 
 })
