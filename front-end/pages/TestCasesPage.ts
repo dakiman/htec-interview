@@ -9,6 +9,7 @@ export default class TestCasesPage extends BasePageObject {
     //TODO replace
     // private addTestStepButton = element(by.className('main')).element(by.buttonText('Add Test Step'))
     private addTestStepButton = element(by.css(".full-width-btn"))
+    private allTestStepInputs = element.all(by.css(`[name*="step"]`));
 
     private testAutomatedSwitch = element(by.className('react-switch-bg'));
     private submitButton = element(by.className('main')).element(by.buttonText('Submit'));
@@ -27,27 +28,27 @@ export default class TestCasesPage extends BasePageObject {
         await this.typeInInput(this.titleInput, text);
     }
 
-    public async getTitleLength(): Promise<number> {
+    public async getTitleInputContent(): Promise<string> {
         await this.waitForVisibility(this.titleInput);
-        return (await this.titleInput.getAttribute("value")).length;
+        return this.titleInput.getAttribute("value");
     }
 
     public async inputDescription(text: string) {
         await this.typeInInput(this.descriptionInput, text);
     }
 
-    public async getDescriptionLength(): Promise<number> {
+    public async getDescriptionInputContent(): Promise<string> {
         await this.waitForVisibility(this.descriptionInput);
-        return (await this.descriptionInput.getText()).length;
+        return this.descriptionInput.getText();
     }
 
     public async inputExpectedResult(text: string) {
         await this.typeInInput(this.expectedResultInput, text);
     }
 
-    public async getExpectedResultLength(): Promise<number> {
+    public async getExpectedResultInputContent(): Promise<string> {
         await this.waitForVisibility(this.expectedResultInput);
-        return (await this.expectedResultInput.getAttribute("value")).length;
+        return this.expectedResultInput.getAttribute("value");
     }
 
     public async toggleAutomatedTest() {
@@ -79,16 +80,20 @@ export default class TestCasesPage extends BasePageObject {
         await this.clickWhenClickable(this.confirmTestCaseDeleteButton);
     }
 
+    public async getTestStepLength(index: number) {
+        return this.allTestStepInputs.get(index).getText()
+    }
+
     public async addTestStep(step: string, index: number) {
-        let testStepInputs = element.all(by.css(`[name*="step"]`));
-        await this.clickAddTestStep();
-        let testStepInput = testStepInputs.get(index);
+        /* only adds a new input if the index is bigger than the number of inputs*/
+        if (await this.allTestStepInputs.count() < index + 1) {
+            await this.clickAddTestStep();
+        }
+        let testStepInput = this.allTestStepInputs.get(index);
         await this.typeInInput(testStepInput, step);
     }
 
     public async inputTestSteps(steps: Array<string>) {
-        // TODO review, 1 more input than required is added
-        // TODO review to replace with forEach
         for (const step of steps) {
             let index = steps.indexOf(step);
             await this.addTestStep(step, index);

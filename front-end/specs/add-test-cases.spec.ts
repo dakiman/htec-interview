@@ -4,7 +4,6 @@ import TestCasesPage from "../pages/TestCasesPage";
 import DataUtils from "../utils/DataUtils";
 import TestCase from "../types/TestCase";
 import TestCasesActions from "../actions/TestCaseActions";
-import {browser} from "protractor";
 
 
 describe('Add test cases to application', () => {
@@ -25,6 +24,7 @@ describe('Add test cases to application', () => {
         let casesCount = await testCasesPage.getTestCasesCount();
 
         for (let i = 0; i < casesCount; i++) {
+            /* Always delete the first test case */
             await testCasesActions
                 .deleteTestCaseByIndex(0);
         }
@@ -47,12 +47,10 @@ describe('Add test cases to application', () => {
         }
     })
 
-
-
     async function getEditedTestCase(): Promise<TestCase> {
-        let titleLength = await testCasesPage.getTitleLength();
-        let descriptionLength = await testCasesPage.getDescriptionLength();
-        let expectedResultLength = await testCasesPage.getExpectedResultLength();
+        let titleLength = (await testCasesPage.getTitleInputContent()).length;
+        let descriptionLength = (await testCasesPage.getDescriptionInputContent()).length;
+        let expectedResultLength = (await testCasesPage.getExpectedResultInputContent()).length;
         return {
             title: getEditMessage(titleLength),
             description: getEditMessage(descriptionLength),
