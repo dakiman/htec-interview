@@ -51,12 +51,14 @@ describe('Add test cases to application', () => {
         let titleLength = (await testCasesPage.getTitleInputContent()).length;
         let descriptionLength = (await testCasesPage.getDescriptionInputContent()).length;
         let expectedResultLength = (await testCasesPage.getExpectedResultInputContent()).length;
+        let testSteps = (await testCasesPage.getAllTestStepsContent())
+            .map(testStep => getEditMessage(testStep.length));
+
         return {
             title: getEditMessage(titleLength),
             description: getEditMessage(descriptionLength),
             expectedResult: getEditMessage(expectedResultLength),
-            automated: true,
-            testSteps: ['new step1', 'new step2']
+            testSteps: testSteps
         }
     }
 

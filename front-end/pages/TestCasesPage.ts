@@ -80,8 +80,12 @@ export default class TestCasesPage extends BasePageObject {
         await this.clickWhenClickable(this.confirmTestCaseDeleteButton);
     }
 
-    public async getTestStepLength(index: number) {
-        return this.allTestStepInputs.get(index).getText()
+    public async getAllTestStepsContent(): Promise<Array<string>> {
+        let testStepContent: Array<string> = [];
+        for (const testStep of (await this.allTestStepInputs.getWebElements())) {
+            testStepContent.push(await testStep.getAttribute("value"))
+        }
+        return testStepContent;
     }
 
     public async addTestStep(step: string, index: number) {
