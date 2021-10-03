@@ -8,7 +8,8 @@ export abstract class BasePageObject {
 
     protected async typeInInput(selector: ElementFinder, text: string, timeout = this.defaultTimeout): Promise<void> {
         //TODO review
-        // await this.clickWhenClickable(selector, timeout);
+        await this.clickWhenClickable(selector, timeout);
+        await selector.clear();
         await selector.sendKeys(text);
     }
 

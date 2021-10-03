@@ -1,5 +1,5 @@
 import {BasePageObject} from "./BasePageObject";
-import {by, element} from "protractor";
+import {browser, by, element} from "protractor";
 
 export default class TestCasesPage extends BasePageObject {
     private addNewTestCaseButton = element(by.css('[href="/new-testcase"]'));
@@ -8,7 +8,7 @@ export default class TestCasesPage extends BasePageObject {
     private expectedResultInput = element(by.css('[name="expected_result"]'));
     //TODO replace
     // private addTestStepButton = element(by.className('main')).element(by.buttonText('Add Test Step'))
-    private addTestStepButton = element(by.css("#root > div > div.grid-menu-container > div.main-grid > div > div.width-container.default-container.default-padding > div:nth-child(4) > div.form-element.undefined > div:nth-child(2) > div"))
+    private addTestStepButton = element(by.css(".full-width-btn"))
 
     private testAutomatedSwitch = element(by.className('react-switch-bg'));
     private submitButton = element(by.className('main')).element(by.buttonText('Submit'));
@@ -27,24 +27,39 @@ export default class TestCasesPage extends BasePageObject {
         await this.typeInInput(this.titleInput, text);
     }
 
+    public async getTitleLength(): Promise<number> {
+        await this.waitForVisibility(this.titleInput);
+        return (await this.titleInput.getAttribute("value")).length;
+    }
+
     public async inputDescription(text: string) {
         await this.typeInInput(this.descriptionInput, text);
+    }
+
+    public async getDescriptionLength(): Promise<number> {
+        await this.waitForVisibility(this.descriptionInput);
+        return (await this.descriptionInput.getText()).length;
     }
 
     public async inputExpectedResult(text: string) {
         await this.typeInInput(this.expectedResultInput, text);
     }
 
+    public async getExpectedResultLength(): Promise<number> {
+        await this.waitForVisibility(this.expectedResultInput);
+        return (await this.expectedResultInput.getAttribute("value")).length;
+    }
+
     public async toggleAutomatedTest() {
         await this.clickWhenClickable(this.testAutomatedSwitch);
     }
 
-    public async clickSubmit() {
-        await this.clickWhenClickable(this.submitButton);
-    }
-
     public async clickAddTestStep() {
         await this.clickWhenClickable(this.addTestStepButton);
+    }
+
+    public async clickSubmit() {
+        await this.clickWhenClickable(this.submitButton);
     }
 
     public async getTestCasesCount() {
@@ -52,7 +67,7 @@ export default class TestCasesPage extends BasePageObject {
         return this.allTestCases.count();
     }
 
-    public async editTestCaseByIndex(index: number) {
+    public async clickEditTestCaseByIndex(index: number) {
         await this.clickWhenClickable(this.testCasesEditButtons.get(index));
     }
 

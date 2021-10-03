@@ -12,9 +12,7 @@ export default class TestCaseActions {
         }
     }
 
-    public async addSingleTestCase(testCase: TestCase) {
-        await this.testCasesPage
-            .clickAddNewTestCase();
+    public async inputTestCaseForm(testCase: TestCase) {
         await this.testCasesPage
             .inputTitle(testCase.title);
         await this.testCasesPage
@@ -33,9 +31,16 @@ export default class TestCaseActions {
             .waitUntilUrlContains('/testcases')
     }
 
+    public async addSingleTestCase(testCase: TestCase) {
+        await this.testCasesPage
+            .clickAddNewTestCase();
+        await this
+            .inputTestCaseForm(testCase)
+    }
+
     public async deleteTestCaseByIndex(index: number) {
         await this.testCasesPage
-            .editTestCaseByIndex(index);
+            .clickEditTestCaseByIndex(index);
         await this.testCasesPage
             .clickDeleteTestCase();
         await this.testCasesPage
@@ -43,5 +48,26 @@ export default class TestCaseActions {
         await WebDriverUtils
             .waitUntilUrlContains('/testcases')
     }
+
+    // public async editTestCaseByIndex(index: number, testCase: TestCase) {
+    //     await this.testCasesPage
+    //         .clickEditTestCaseByIndex(index);
+    //     await this.testCasesPage
+    //         .inputTitle(testCase.title);
+    //     await this.testCasesPage
+    //         .inputDescription(testCase.description);
+    //     await this.testCasesPage
+    //         .inputExpectedResult(testCase.expectedResult);
+    //     await this.testCasesPage
+    //         .inputTestSteps(testCase.testSteps);
+    //     if (testCase.automated) {
+    //         await this.testCasesPage
+    //             .toggleAutomatedTest();
+    //     }
+    //     await this.testCasesPage
+    //         .clickSubmit();
+    //     await WebDriverUtils
+    //         .waitUntilUrlContains('/testcases')
+    // }
 
 }
