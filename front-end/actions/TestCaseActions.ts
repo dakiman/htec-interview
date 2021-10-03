@@ -29,6 +29,19 @@ export default class TestCaseActions {
         }
         await this.testCasesPage
             .clickSubmit();
-        await WebDriverUtils.waitUntilUrlContains('/testcases')
+        await WebDriverUtils
+            .waitUntilUrlContains('/testcases')
     }
+
+    public async deleteTestCaseByIndex(index: number) {
+        await this.testCasesPage
+            .editTestCaseByIndex(index);
+        await this.testCasesPage
+            .clickDeleteTestCase();
+        await this.testCasesPage
+            .clickConfirmTestCaseDelete();
+        await WebDriverUtils
+            .waitUntilUrlContains('/testcases')
+    }
+
 }
