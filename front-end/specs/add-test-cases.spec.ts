@@ -21,26 +21,34 @@ describe('Add test cases to application', () => {
         testCases = JSON.parse(await DataUtils.readFileAsJson('front-end/resources/testCases.json'));
     })
 
+    //
+    // it('Add test cases from a file', async () => {
+    //     await testCaseActions.addTestCases(testCases);
+    // })
+
     it('Deletes existing test cases', async () => {
         await browser.sleep(2000)
         let testCases = $$('.portrait-grid > span');
         let casesCount = await testCases.count();
 
+
         for (let i = 0; i < casesCount; i++) {
-            testCases = $$('.portrait-grid > span');
-            testCases.first().element(by.xpath('//*[contains(@href, "/edit-testcase/")]')).click();
-            let deleteBtn = element(by.css('#root > div > div.grid-menu-container > div.main-grid > div > div > div:nth-child(1) > div > div > div > span > button'))
+            // testCases = $$('.portrait-grid > span');
+            // testCases.first().element(by.xpath('//*[contains(@href, "/edit-testcase/")]')).click();
+            // element(by.xpath('//*[contains(@href, "/edit-testcase/")]')).click();
+            element(by.css('a[href*="/edit-testcase/"')).click()
+
+            let deleteBtn = element(by.css('.btn-danger'))
             deleteBtn.click();
 
             let removeBtn = element(by.className('confirmation-dialog--buttons--confirm'))
             removeBtn.click();
 
-            await WebDriverUtils.waitUntilUrlContains('/testcases')
+            browser.sleep(2000);
+            await WebDriverUtils.waitUntilUrlContains('/testcases', 5000)
+            browser.sleep(2000);
         }
     })
 
-    // it('Add test cases from a file', async () => {
-    //     await testCaseActions.addTestCases(testCases);
-    // })
 
 })
