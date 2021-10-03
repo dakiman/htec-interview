@@ -3,4 +3,5 @@ export default interface TestCase {
     description: string
     expectedResult: string
     testSteps: Array<string>
+    automated: boolean
 }

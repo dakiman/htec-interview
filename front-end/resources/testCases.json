@@ -6,7 +6,8 @@
     "testSteps": [
       "My first test step",
       "My second test step"
-    ]
+    ],
+    "automated": true
   },
   {
     "title": "My second title",
@@ -15,6 +16,7 @@
     "testSteps": [
       "My third test step",
       "My fourth test step"
-    ]
+    ],
+    "automated": false
   }
 ]
