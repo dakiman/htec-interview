@@ -1,13 +1,11 @@
 import LoginActions from "../actions/LoginActions";
 import SidebarComponent from "../pages/SidebarComponent";
 import TestCasesPage from "../pages/TestCasesPage";
-import DataUtils from "../utils/DataUtils";
-import TestCase from "../types/TestCase";
+import DataUtils from "../../common-module/utils/DataUtils";
+import TestCase from "../../common-module/models/types/TestCase";
 import TestCasesActions from "../actions/TestCaseActions";
-import TestStep from "../types/TestStep";
 
-
-describe('Test case specs', () => {
+describe('Front-end test suite', () => {
 
     let loginActions = new LoginActions();
     let sidebarComponent = new SidebarComponent();
@@ -53,7 +51,7 @@ describe('Test case specs', () => {
         let descriptionLength = (await testCasesPage.getDescriptionInputContent()).length;
         let expectedResultLength = (await testCasesPage.getExpectedResultInputContent()).length;
         let testSteps = (await testCasesPage.getAllTestStepsContent())
-            .map<TestStep>(testStep => {
+            .map(testStep => {
                 return {value: getEditMessage(testStep.length)}
             });
 

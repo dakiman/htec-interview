@@ -1,3 +1,0 @@
-interface TestStep {
-    value: string
-}
