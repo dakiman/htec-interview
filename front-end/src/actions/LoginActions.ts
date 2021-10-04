@@ -1,7 +1,7 @@
 import {browser} from "protractor";
 import BrowserUtils from "../utils/WebDriverUtils";
 import LoginPage from "../pages/LoginPage";
-import Configuration from "../../app-config";
+import Configuration from "../../../app-config";
 
 export default class LoginActions {
     private loginPage = new LoginPage();

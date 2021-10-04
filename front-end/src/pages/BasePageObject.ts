@@ -1,5 +1,5 @@
 import {browser, by, ElementFinder, ExpectedConditions} from "protractor";
-import Configuration from "../../app-config";
+import Configuration from "../../../app-config";
 
 export abstract class BasePageObject {
 

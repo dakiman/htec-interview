@@ -1,6 +1,6 @@
 import {BasePageObject} from "./BasePageObject";
 import {browser, by, element} from "protractor";
-import TestStep from "../../common-module/models/types/TestStep";
+import TestStep from "../../../common-module/models/types/TestStep";
 
 export default class TestCasesPage extends BasePageObject {
     private addNewTestCaseButton = element(by.css('[href="/new-testcase"]'));

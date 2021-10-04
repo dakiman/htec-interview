@@ -1,8 +1,8 @@
 import LoginActions from "../actions/LoginActions";
 import SidebarComponent from "../pages/SidebarComponent";
 import TestCasesPage from "../pages/TestCasesPage";
-import DataUtils from "../../common-module/utils/DataUtils";
-import TestCase from "../../common-module/models/types/TestCase";
+import DataUtils from "../../../common-module/utils/DataUtils";
+import TestCase from "../../../common-module/models/types/TestCase";
 import TestCasesActions from "../actions/TestCaseActions";
 
 describe('Front-end test suite', () => {
