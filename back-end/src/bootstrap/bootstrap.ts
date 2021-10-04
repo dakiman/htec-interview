@@ -9,7 +9,7 @@ if (result.error) {
     throw result.error;
 }
 
-import Configuration from "../../app-config";
+import Configuration from "../../../app-config";
 
 const JasmineConsoleReporter = require('jasmine-console-reporter');
 jasmine.getEnv().addReporter(new JasmineConsoleReporter());

@@ -2,8 +2,8 @@ import AuthClient from "./AuthClient";
 import axios, {AxiosResponse} from "axios";
 import LoginResponse from "../models/LoginResponse";
 import SingleTestCase from "../models/SingleTestCase";
-import TestCase from "../../common-module/models/types/TestCase";
-import Configuration from "../../app-config";
+import TestCase from "../../../common-module/models/types/TestCase";
+import Configuration from "../../../app-config";
 
 export default class TestCasesClient {
     private authClient: AuthClient = new AuthClient();

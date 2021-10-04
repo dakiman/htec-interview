@@ -1,7 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 import SingleTestCase from "../models/SingleTestCase";
-import DataUtils from "../../common-module/utils/DataUtils";
-import TestCase from "../../common-module/models/types/TestCase";
+import DataUtils from "../../../common-module/utils/DataUtils";
+import TestCase from "../../../common-module/models/types/TestCase";
 import TestCasesClient from "../http/TestCasesClient";
 
 

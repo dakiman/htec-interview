@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test-fe": "npx webdriver-manager update && npx protractor front-end/launch.js --random=false",
-    "test-be": "npx jasmine-ts back-end/specs/*.spec.ts --config=back-end/jasmine-config.json",
-    "test-all": "npx webdriver-manager update && npx protractor front-end/launch.js && npx jasmine-ts back-end/specs/*.spec.ts --config=back-end/jasmine-config.json"
+    "test-be": "npx jasmine-ts back-end/src/specs/*.spec.ts --config=back-end/jasmine-config.json",
+    "test-all": "npx webdriver-manager update && npx protractor front-end/launch.js && npx jasmine-ts back-end/src/specs/*.spec.ts --config=back-end/jasmine-config.json"
   },
   "author": "",
   "license": "ISC",
