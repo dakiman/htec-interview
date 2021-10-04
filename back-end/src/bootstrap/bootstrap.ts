@@ -1,5 +1,9 @@
 import axios from "axios";
 
+/*
+* Retrieving environmnet variables
+* Leave at beginning of file for safety
+* */
 const result = require('dotenv').config({
     path: './.env',
 });
@@ -9,23 +13,30 @@ if (result.error) {
     throw result.error;
 }
 
-import Configuration from "../../../app-config";
+/*
+* Jasmine configuration and reporter
+* */
 
 const JasmineConsoleReporter = require('jasmine-console-reporter');
 jasmine.getEnv().addReporter(new JasmineConsoleReporter());
-// jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000; //TODO Review
+
+/*
+* Axios configuration
+* */
+import Configuration from "../../../app-config";
 
 axios.defaults.baseURL = Configuration.API_URL;
 if (Configuration.API_URL == null) throw new Error("You must specify API_URL parameter in .env file")
 
-//TODO review
-// if (Configuration.ENABLE_API_LOGGING) {
-//     axios.interceptors.response.use(
-//         (response) => {
-//             console.log(response.data);
-//             return response;
-//         }, (error) => {
-//             console.log(error.response.data);
-//             return Promise.reject(error);
-//         });
-// }
+console.log('LOGGING', Configuration.ENABLE_API_LOGGING);
+
+if (Configuration.ENABLE_API_LOGGING) {
+    axios.interceptors.response.use(
+        (response) => {
+            console.log(response.data);
+            return response;
+        }, (error) => {
+            console.log(error.response.data);
+            return Promise.reject(error);
+        });
+}
