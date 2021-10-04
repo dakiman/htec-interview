@@ -1,5 +1,3 @@
-import axios, {AxiosResponse} from "axios";
-import SingleTestCase from "../models/SingleTestCase";
 import DataUtils from "../../../common-module/utils/DataUtils";
 import TestCase from "../../../common-module/models/TestCase";
 import TestCasesClient from "../http/TestCasesClient";
@@ -7,7 +5,6 @@ import TestCasesClient from "../http/TestCasesClient";
 
 describe('My backend test suite', () => {
 
-    let testCaseId: number;
     let testCases: Array<TestCase>;
     let testCasesClient = new TestCasesClient();
 
@@ -18,7 +15,7 @@ describe('My backend test suite', () => {
 
     it('Deletes existing test cases', async () => {
         let getTestCasesResponse = await testCasesClient.getAllTestCases();
-        let allTestCases: Array<SingleTestCase> = getTestCasesResponse.data;
+        let allTestCases: Array<TestCase> = getTestCasesResponse.data;
 
         for (const testCase of allTestCases) {
             await testCasesClient.deleteTestCase(testCase.id);
@@ -33,7 +30,7 @@ describe('My backend test suite', () => {
 
     it('Edits test cases', async () => {
         let getTestCasesResponse = await testCasesClient.getAllTestCases();
-        let allTestCases: Array<SingleTestCase> = getTestCasesResponse.data;
+        let allTestCases: Array<TestCase> = getTestCasesResponse.data;
 
         for (const testCase of allTestCases) {
             await testCasesClient.updateTestCase(getEditedTestCase(testCase))

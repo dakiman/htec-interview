@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, {AxiosResponse} from "axios";
 import LoginResponse from "../models/LoginResponse";
 
 export default class AuthClient {
