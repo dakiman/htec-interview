@@ -1,4 +1,4 @@
-import TestCase from "../../../common-module/models/types/TestCase";
+import TestCase from "../../../common-module/models/TestCase";
 import WebDriverUtils from "../utils/WebDriverUtils";
 import TestCasesPage from "../pages/TestCasesPage";
 

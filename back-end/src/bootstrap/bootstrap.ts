@@ -13,22 +13,23 @@ if (result.error) {
     throw result.error;
 }
 
+import Configuration from "../../../app-config";
+import SpecReporter from "../../../common-module/reporter/SpecReporter";
+
 /*
 * Jasmine configuration and reporter
 * */
 
-const JasmineConsoleReporter = require('jasmine-console-reporter');
-jasmine.getEnv().addReporter(new JasmineConsoleReporter());
+// const JasmineConsoleReporter = require('jasmine-console-reporter');
+// jasmine.getEnv().addReporter(new JasmineConsoleReporter());
+jasmine.getEnv().addReporter(new SpecReporter());
 
 /*
 * Axios configuration
 * */
-import Configuration from "../../../app-config";
 
 axios.defaults.baseURL = Configuration.API_URL;
 if (Configuration.API_URL == null) throw new Error("You must specify API_URL parameter in .env file")
-
-console.log('LOGGING', Configuration.ENABLE_API_LOGGING);
 
 if (Configuration.ENABLE_API_LOGGING) {
     axios.interceptors.response.use(

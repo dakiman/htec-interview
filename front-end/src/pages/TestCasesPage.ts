@@ -1,17 +1,15 @@
 import {BasePageObject} from "./BasePageObject";
 import {browser, by, element} from "protractor";
-import TestStep from "../../../common-module/models/types/TestStep";
+import TestStep from "../../../common-module/models/TestStep";
 
 export default class TestCasesPage extends BasePageObject {
     private addNewTestCaseButton = element(by.css('[href="/new-testcase"]'));
+
     private titleInput = element(by.css('[name="title"]'));
     private descriptionInput = element(by.className('main')).element(by.css('[name="description"]'));
     private expectedResultInput = element(by.css('[name="expected_result"]'));
-    //TODO replace
-    // private addTestStepButton = element(by.className('main')).element(by.buttonText('Add Test Step'))
     private addTestStepButton = element(by.css(".full-width-btn"))
     private allTestStepInputs = element.all(by.css(`[name*="step"]`));
-
     private testAutomatedSwitch = element(by.className('react-switch-bg'));
     private submitButton = element(by.className('main')).element(by.buttonText('Submit'));
 
