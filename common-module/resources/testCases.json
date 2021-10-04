@@ -1,28 +1,284 @@
 [
   {
-    "title": "My first title 123",
-    "description": "My first description 123",
-    "expected_result": "My first expected result 123",
+    "title": "Create new VALID test case, no preexisting test cases",
+    "description": "With no prior existing test cases, create a new test case with valid inputs",
+    "expected_result": "Test case is created with input data and card with test case is visible",
     "test_steps": [
       {
-        "value": "My first test step"
+        "value": "GIVEN Im on the Test cases page"
       },
       {
-        "value": "My second test step"
+        "value": "WHEN I click `New Test case`"
+      },
+      {
+        "value": "AND I input some valid data in all of the offered fields"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN I Expect the new test case to be created"
+      },
+      {
+        "value": "AND I expect the data to match what was previously entered"
       }
     ],
     "automated": true
   },
   {
-    "title": "My second title 123sdaasdasdadasdasdas",
-    "description": "My second description 123asasdsa",
-    "expected_result": "My second expected result 123asdaadsada",
+    "title": "Create a new VALID test case, with some preexisting test cases",
+    "description": "With already existing test cases, create a new test case with valid inputs",
+    "expected_result": "Test case is created with input data, card with test case is visible and existing tests remain the same",
     "test_steps": [
       {
-        "value": "My third test step"
+        "value": "GIVEN Im on the Test cases page, with some existing test cases being there"
       },
       {
-        "value": "My fourth test step"
+        "value": "WHEN I click `New Test case`"
+      },
+      {
+        "value": "AND I input some valid data in all of the offered fields"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN I Expect the new test case to be created"
+      },
+      {
+        "value": "AND I expect the data to match what was previously entered"
+      },
+      {
+        "value": "AND I expect the existing test cases to be unaltered"
+      }
+    ],
+    "automated": false
+  },
+  {
+    "title": "Create a new VALID test case with a `Title` that already exists",
+    "description": "With already existing test cases, create a new test case with a `Title` that is a duplicate of some other existing test case",
+    "expected_result": "A validation error is displayed",
+    "test_steps": [
+      {
+        "value": "GIVEN Im on the Test cases page, with some existing test cases being there"
+      },
+      {
+        "value": "WHEN I click `New Test case`"
+      },
+      {
+        "value": "AND i input a `Title` that already exists on another Test Case"
+      },
+      {
+        "value": "AND I input some valid data in all of the other offered fields"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN i expect a validation message to pop-up telling me that the field is required"
+      },
+      {
+        "value": "AND the test case shouldn't be created"
+      }
+    ],
+    "automated": false
+  },
+  {
+    "title": "Create a test case without `Title` field",
+    "description": "Attempt to create a test case where the REQUIRED field `Title` is not present",
+    "expected_result": "A validation error is displayed",
+    "test_steps": [
+      {
+        "value": "GIVEN Im on the Test cases page"
+      },
+      {
+        "value": "WHEN I click `New Test case`"
+      },
+      {
+        "value": "AND I input some valid data in all of the the offered fields EXCEPT `Title`"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN i expect a validation message to pop-up telling me that the field is required"
+      },
+      {
+        "value": "AND the test case shouldn't be created"
+      }
+    ],
+    "automated": false
+  },
+  {
+    "title": "Create a test case without `Description` field",
+    "description": "Attempt to create a test case where the OPTIONAL field `Description` is not present",
+    "expected_result": "A test case is created without a description",
+    "test_steps": [
+      {
+        "value": "GIVEN Im on the Test cases page"
+      },
+      {
+        "value": "WHEN I click `New Test case`"
+      },
+      {
+        "value": "AND I input some valid data in all of the the offered fields EXCEPT `Description`"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN I Expect the new test case to be created"
+      },
+      {
+        "value": "AND I expect the data to match what was previously entered, and the description field to be empty"
+      }
+    ],
+    "automated": false
+  },
+  {
+    "title": "Create a test case without `Expected result` field",
+    "description": "Attempt to create a test case where the REQUIRED field `Expected result` is not present",
+    "expected_result": "A validation error is displayed",
+    "test_steps": [
+      {
+        "value": "GIVEN Im on the Test cases page"
+      },
+      {
+        "value": "WHEN I click `New Test case`"
+      },
+      {
+        "value": "AND I input some valid data in all of the the offered fields EXCEPT `Expected Result`"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN i expect a validation message to pop-up telling me that the field is required"
+      },
+      {
+        "value": "AND the test case shouldn't be created"
+      }
+    ],
+    "automated": false
+  },
+  {
+    "title": "Create a test case without REQUIRED `Test steps` field",
+    "description": "Attempt to create a test case where the REQUIRED field `Test steps` is not present",
+    "expected_result": "A validation error is displayed",
+    "test_steps": [
+      {
+        "value": "GIVEN Im on the Test cases page"
+      },
+      {
+        "value": "WHEN I click `New Test case`"
+      },
+      {
+        "value": "AND I input some valid data in all of the the offered fields EXCEPT `Test steps`"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN i expect a validation message to pop-up telling me that the field is required"
+      },
+      {
+        "value": "AND the test case shouldn't be created"
+      }
+    ],
+    "automated": false
+  },
+  {
+    "title": "Create new VALID test case with multiple test steps",
+    "description": "Create a test case containing multiple test steps",
+    "expected_result": "Test case is created with input data and card with test case is visible",
+    "test_steps": [
+      {
+        "value": "GIVEN Im on the Test cases page"
+      },
+      {
+        "value": "WHEN I click `New Test case`"
+      },
+      {
+        "value": "AND I input some valid data in all of the offered fields"
+      },
+      {
+        "value": "AND I click on the `Add test step` button multiple times"
+      },
+      {
+        "value": "AND I input valid data in the new `Test step` fields"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN I Expect the new test case to be created"
+      },
+      {
+        "value": "AND I expect the data to match what was previously entered"
+      }
+    ],
+    "automated": true
+  },
+  {
+    "title": "Edit existing test case",
+    "description": "Edit an existing test case with valid data",
+    "expected_result": "The existing test case data is changed",
+    "test_steps": [
+      {
+        "value": "GIVEN Im on the Test cases page"
+      },
+      {
+        "value": "AND There is an existing test case"
+      },
+      {
+        "value": "WHEN I click on the test case card"
+      },
+      {
+        "value": "AND I am taken to the edit test case form"
+      },
+      {
+        "value": "AND I enter new data in all the fields"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN I Expect the existing test case to be updated"
+      },
+      {
+        "value": "AND I expect the data to match the inputs in the update form"
+      }
+    ],
+    "automated": true
+  },
+  {
+    "title": "Delete existing test case",
+    "description": "An existing test case is deleted",
+    "expected_result": "The test case no longer exists",
+    "test_steps": [
+      {
+        "value": "GIVEN Im on the Test cases page"
+      },
+      {
+        "value": "AND There is an existing test case"
+      },
+      {
+        "value": "WHEN I click on the test case card"
+      },
+      {
+        "value": "AND I am taken to the edit test case form"
+      },
+      {
+        "value": "AND I Click the delete test case button on the upper right"
+      },
+      {
+        "value": "AND I click `Remove` in the confirmation pop-up"
+      },
+      {
+        "value": "THEN I expect to be redirected to the test cases page"
+      },
+      {
+        "value": "AND I expect the deleted test case to no longer appear"
       }
     ],
     "automated": false

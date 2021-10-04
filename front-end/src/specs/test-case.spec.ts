@@ -17,6 +17,7 @@ describe('Front-end test suite', () => {
         await loginActions.defaultLogin();
         await sidebarComponent.clickTestCasesNavButton();
         testCases = JSON.parse(await DataUtils.readFileAsJson('common-module/resources/testCases.json'));
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000; // test might time out due to long input time
     })
 
     /*Caveat: Some test must exist or this case will fail*/
