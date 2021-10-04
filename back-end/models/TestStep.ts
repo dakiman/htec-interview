@@ -1,0 +1,3 @@
+interface TestStep {
+    value: string
+}

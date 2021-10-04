@@ -7,5 +7,5 @@
     "bootstrap/**/*.ts"
   ],
   "stopSpecOnExpectationFailure": true,
-  "random": true
+  "random": false
 }
