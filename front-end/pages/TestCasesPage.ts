@@ -1,5 +1,6 @@
 import {BasePageObject} from "./BasePageObject";
 import {browser, by, element} from "protractor";
+import TestStep from "../types/TestStep";
 
 export default class TestCasesPage extends BasePageObject {
     private addNewTestCaseButton = element(by.css('[href="/new-testcase"]'));
@@ -88,16 +89,16 @@ export default class TestCasesPage extends BasePageObject {
         return testStepContent;
     }
 
-    public async addTestStep(step: string, index: number) {
+    public async addTestStep(step: TestStep, index: number) {
         /* only adds a new input if the index is bigger than the number of inputs*/
         if (await this.allTestStepInputs.count() < index + 1) {
             await this.clickAddTestStep();
         }
         let testStepInput = this.allTestStepInputs.get(index);
-        await this.typeInInput(testStepInput, step);
+        await this.typeInInput(testStepInput, step.value);
     }
 
-    public async inputTestSteps(steps: Array<string>) {
+    public async inputTestSteps(steps: Array<TestStep>) {
         for (const step of steps) {
             let index = steps.indexOf(step);
             await this.addTestStep(step, index);

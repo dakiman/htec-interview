@@ -30,7 +30,7 @@ exports.config = {
 
     //TODO review
     specs: [
-        './specs/add-test-cases.spec.ts',
+        './specs/test-case.spec.ts',
     ],
 
     onPrepare: async function () {

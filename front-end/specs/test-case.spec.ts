@@ -4,9 +4,10 @@ import TestCasesPage from "../pages/TestCasesPage";
 import DataUtils from "../utils/DataUtils";
 import TestCase from "../types/TestCase";
 import TestCasesActions from "../actions/TestCaseActions";
+import TestStep from "../types/TestStep";
 
 
-describe('Add test cases to application', () => {
+describe('Test case specs', () => {
 
     let loginActions = new LoginActions();
     let sidebarComponent = new SidebarComponent();
@@ -17,7 +18,7 @@ describe('Add test cases to application', () => {
     beforeAll(async () => {
         await loginActions.defaultLogin();
         await sidebarComponent.clickTestCasesNavButton();
-        testCases = JSON.parse(await DataUtils.readFileAsJson('front-end/resources/testCases.json'));
+        testCases = JSON.parse(await DataUtils.readFileAsJson('common-module/resources/testCases.json'));
     })
 
     it('Deletes existing test cases', async () => {
@@ -52,13 +53,15 @@ describe('Add test cases to application', () => {
         let descriptionLength = (await testCasesPage.getDescriptionInputContent()).length;
         let expectedResultLength = (await testCasesPage.getExpectedResultInputContent()).length;
         let testSteps = (await testCasesPage.getAllTestStepsContent())
-            .map(testStep => getEditMessage(testStep.length));
+            .map<TestStep>(testStep => {
+                return {value: getEditMessage(testStep.length)}
+            });
 
         return {
             title: getEditMessage(titleLength),
             description: getEditMessage(descriptionLength),
-            expectedResult: getEditMessage(expectedResultLength),
-            testSteps: testSteps
+            expected_result: getEditMessage(expectedResultLength),
+            test_steps: testSteps
         }
     }
 

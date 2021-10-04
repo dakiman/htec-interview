@@ -18,9 +18,9 @@ export default class TestCaseActions {
         await this.testCasesPage
             .inputDescription(testCase.description);
         await this.testCasesPage
-            .inputExpectedResult(testCase.expectedResult);
+            .inputExpectedResult(testCase.expected_result);
         await this.testCasesPage
-            .inputTestSteps(testCase.testSteps);
+            .inputTestSteps(testCase.test_steps);
         if (testCase.automated) {
             await this.testCasesPage
                 .toggleAutomatedTest();

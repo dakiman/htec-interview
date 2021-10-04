@@ -1,7 +1,7 @@
 export default interface TestCase {
     title: string
     description: string
-    expectedResult: string
-    testSteps: Array<string>
+    expected_result: string
+    test_steps: Array<TestStep>
     automated?: boolean
 }

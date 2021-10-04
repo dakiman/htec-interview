@@ -1,0 +1,30 @@
+[
+  {
+    "title": "My first title 123",
+    "description": "My first description 123",
+    "expected_result": "My first expected result 123",
+    "test_steps": [
+      {
+        "value": "My first test step"
+      },
+      {
+        "value": "My second test step"
+      }
+    ],
+    "automated": true
+  },
+  {
+    "title": "My second title 123sdaasdasdadasdasdas",
+    "description": "My second description 123asasdsa",
+    "expected_result": "My second expected result 123asdaadsada",
+    "test_steps": [
+      {
+        "value": "My third test step"
+      },
+      {
+        "value": "My fourth test step"
+      }
+    ],
+    "automated": false
+  }
+]
