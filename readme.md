@@ -10,6 +10,7 @@
 your own .env file (there is a **.env.example** file that you can copy over)
 
 * Make sure to input valid email/password in the **.env** file credentials for logging into the application before running the tests
+* Make sure to have the latest version of chrome installed OR alter the **npm run test** commands to specify WebDriver version
 ### Running the tests
 
 * To run front-end tests run the following command:
