@@ -81,6 +81,7 @@ export default class TestCasesPage extends BasePageObject {
 
     public async getAllTestStepsContent(): Promise<Array<string>> {
         let testStepContent: Array<string> = [];
+        /*testStepsInputs.each() didnt work*/
         for (const testStep of (await this.allTestStepInputs.getWebElements())) {
             testStepContent.push(await testStep.getAttribute("value"))
         }
