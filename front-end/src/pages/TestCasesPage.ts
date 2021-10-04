@@ -19,11 +19,11 @@ export default class TestCasesPage extends BasePageObject {
     private deleteTestCaseButton = element(by.css('.btn-danger'));
     private confirmTestCaseDeleteButton = element(by.className('confirmation-dialog--buttons--confirm'));
 
-    public async clickAddNewTestCase() {
+    public async clickAddNewTestCase(): Promise<void> {
         await this.clickWhenClickable(this.addNewTestCaseButton)
     }
 
-    public async inputTitle(text: string) {
+    public async inputTitle(text: string): Promise<void> {
         await this.typeInInput(this.titleInput, text);
     }
 
@@ -32,7 +32,7 @@ export default class TestCasesPage extends BasePageObject {
         return this.titleInput.getAttribute("value");
     }
 
-    public async inputDescription(text: string) {
+    public async inputDescription(text: string): Promise<void> {
         await this.typeInInput(this.descriptionInput, text);
     }
 
@@ -41,7 +41,7 @@ export default class TestCasesPage extends BasePageObject {
         return this.descriptionInput.getText();
     }
 
-    public async inputExpectedResult(text: string) {
+    public async inputExpectedResult(text: string): Promise<void> {
         await this.typeInInput(this.expectedResultInput, text);
     }
 
@@ -50,32 +50,32 @@ export default class TestCasesPage extends BasePageObject {
         return this.expectedResultInput.getAttribute("value");
     }
 
-    public async toggleAutomatedTest() {
+    public async toggleAutomatedTest(): Promise<void> {
         await this.clickWhenClickable(this.testAutomatedSwitch);
     }
 
-    public async clickAddTestStep() {
+    public async clickAddTestStep(): Promise<void> {
         await this.clickWhenClickable(this.addTestStepButton);
     }
 
-    public async clickSubmit() {
+    public async clickSubmit(): Promise<void> {
         await this.clickWhenClickable(this.submitButton);
     }
 
-    public async getTestCasesCount() {
+    public async getTestCasesCount(): Promise<number> {
         await this.waitForVisibility(this.allTestCases.get(0));
         return this.allTestCases.count();
     }
 
-    public async clickEditTestCaseByIndex(index: number) {
+    public async clickEditTestCaseByIndex(index: number): Promise<void> {
         await this.clickWhenClickable(this.testCasesEditButtons.get(index));
     }
 
-    public async clickDeleteTestCase() {
+    public async clickDeleteTestCase(): Promise<void> {
         await this.clickWhenClickable(this.deleteTestCaseButton);
     }
 
-    public async clickConfirmTestCaseDelete() {
+    public async clickConfirmTestCaseDelete(): Promise<void> {
         await this.clickWhenClickable(this.confirmTestCaseDeleteButton);
     }
 
@@ -87,7 +87,7 @@ export default class TestCasesPage extends BasePageObject {
         return testStepContent;
     }
 
-    public async addTestStep(step: TestStep, index: number) {
+    public async addTestStep(step: TestStep, index: number): Promise<void> {
         /* only adds a new input if the index is bigger than the number of inputs*/
         if (await this.allTestStepInputs.count() < index + 1) {
             await this.clickAddTestStep();
@@ -96,7 +96,7 @@ export default class TestCasesPage extends BasePageObject {
         await this.typeInInput(testStepInput, step.value);
     }
 
-    public async inputTestSteps(steps: Array<TestStep>) {
+    public async inputTestSteps(steps: Array<TestStep>): Promise<void> {
         for (const step of steps) {
             let index = steps.indexOf(step);
             await this.addTestStep(step, index);

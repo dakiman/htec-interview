@@ -8,7 +8,7 @@ export default class LoginActions {
     private defaultEmail = Configuration.USER_EMAIL;
     private defaultPassword = Configuration.USER_PASSWORD;
 
-    public async loginForUser(email: string, password: string) {
+    public async loginForUser(email: string, password: string): Promise<void> {
         await browser.get('/login')
         //Check whether the user is already logged in
         if(!await BrowserUtils.doesUrlContain('/dashboard')) {
@@ -19,7 +19,7 @@ export default class LoginActions {
         }
     }
 
-    public async defaultLogin() {
+    public async defaultLogin(): Promise<void> {
         if(this.defaultEmail == null || this.defaultPassword == null) {
             throw new Error("You must specify default login parameters in .env file");
         }

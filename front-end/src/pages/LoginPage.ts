@@ -6,15 +6,15 @@ export default class LoginPage extends BasePageObject {
     private passwordInput = element(by.css('[name="password"]'))
     private loginButton = element(by.className('landing')).element(by.buttonText('Login'))
 
-    public async inputEmail(text: string) {
+    public async inputEmail(text: string): Promise<void> {
         await this.typeInInput(this.emailInput, text);
     }
 
-    public async inputPassword(text: string) {
+    public async inputPassword(text: string): Promise<void> {
         await this.typeInInput(this.passwordInput, text);
     }
 
-    public async clickLogin() {
+    public async clickLogin(): Promise<void> {
         await this.clickWhenClickable(this.loginButton);
     }
 }
