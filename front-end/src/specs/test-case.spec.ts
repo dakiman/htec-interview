@@ -19,6 +19,7 @@ describe('Front-end test suite', () => {
         testCases = JSON.parse(await DataUtils.readFileAsJson('common-module/resources/testCases.json'));
     })
 
+    /*Caveat: Some test must exist or this case will fail*/
     it('Deletes existing test cases', async () => {
         let casesCount = await testCasesPage.getTestCasesCount();
 
