@@ -52,7 +52,7 @@
         "value": "AND I expect the existing test cases to be unaltered"
       }
     ],
-    "automated": false
+    "automated": true
   },
   {
     "title": "Create a new VALID test case with a `Title` that already exists",
@@ -281,6 +281,6 @@
         "value": "AND I expect the deleted test case to no longer appear"
       }
     ],
-    "automated": false
+    "automated": true
   }
 ]
