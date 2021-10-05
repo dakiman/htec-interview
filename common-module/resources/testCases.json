@@ -282,5 +282,78 @@
       }
     ],
     "automated": true
+  },
+  {
+    "title": "Change test step order when creating a test case",
+    "description": "Creating a test case with multiple test steps and change their order",
+    "expected_result": "The order is properly kept and saved",
+    "test_steps": [
+      {
+        "value": "GIVEN Im on the Test cases page"
+      },
+      {
+        "value": "WHEN I click `New Test case`"
+      },
+      {
+        "value": "AND I input some valid data in all of the offered fields"
+      },
+      {
+        "value": "AND I Click 'Add Test Step' multiple times"
+      },
+      {
+        "value": "AND I Input some data in the test step fields"
+      },
+      {
+        "value": "AND I Change the order of the test step fields before saving"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN I Expect the new test case to be created"
+      },
+      {
+        "value": "AND I expect the data to match what was previously entered"
+      },
+      {
+        "value": "AND the order of the test steps is as was entered"
+      }
+    ],
+    "automated": true
+  },
+  {
+    "title": "Change test step order when editing a test case",
+    "description": "Editing a test case with multiple test steps and change their order",
+    "expected_result": "The test step order is changed",
+    "test_steps": [
+      {
+        "value": "GIVEN Im on the Test cases page"
+      },
+      {
+        "value": "AND There is an existing test case, with multiple steps"
+      },
+      {
+        "value": "WHEN I click on the test case card"
+      },
+      {
+        "value": "AND I am taken to the edit test case form"
+      },
+      {
+        "value": "AND I change the order of the existing test stpes"
+      },
+      {
+        "value": "AND I click `Submit` button"
+      },
+      {
+        "value": "THEN I Expect the existing test case to be updated"
+      },
+      {
+        "value": "AND I expect the data to match the inputs in the update form"
+      },
+      {
+        "value": "AND the order of the test steps is as was edited"
+      }
+    ],
+    "automated": true
   }
 ]
