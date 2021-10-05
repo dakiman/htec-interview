@@ -75,7 +75,7 @@
         "value": "AND I click `Submit` button"
       },
       {
-        "value": "THEN i expect a validation message to pop-up telling me that the field is required"
+        "value": "THEN i expect a validation message to pop-up telling me that the title already exists"
       },
       {
         "value": "AND the test case shouldn't be created"

@@ -2,7 +2,6 @@ import {browser} from "protractor";
 import './bootstrap';
 import Configuration from "../app-config";
 const JasmineConsoleReporter = require('jasmine-console-reporter');
-import SpecReporter from "../common-module/reporter/SpecReporter";
 let HtmlReporter = require('protractor-beautiful-reporter');
 
 exports.config = {
@@ -39,6 +38,5 @@ exports.config = {
         }).getJasmine2Reporter());
 
         jasmine.getEnv().addReporter(new JasmineConsoleReporter());
-        // jasmine.getEnv().addReporter(new SpecReporter()); //had issues working same way as BE
     }
 };

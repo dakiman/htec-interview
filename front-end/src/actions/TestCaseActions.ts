@@ -49,25 +49,4 @@ export default class TestCaseActions {
             .waitUntilUrlContains('/testcases')
     }
 
-    // public async editTestCaseByIndex(index: number, testCase: TestCase): Promise<void> {
-    //     await this.testCasesPage
-    //         .clickEditTestCaseByIndex(index);
-    //     await this.testCasesPage
-    //         .inputTitle(testCase.title);
-    //     await this.testCasesPage
-    //         .inputDescription(testCase.description);
-    //     await this.testCasesPage
-    //         .inputExpectedResult(testCase.expectedResult);
-    //     await this.testCasesPage
-    //         .inputTestSteps(testCase.testSteps);
-    //     if (testCase.automated) {
-    //         await this.testCasesPage
-    //             .toggleAutomatedTest();
-    //     }
-    //     await this.testCasesPage
-    //         .clickSubmit();
-    //     await WebDriverUtils
-    //         .waitUntilUrlContains('/testcases')
-    // }
-
 }

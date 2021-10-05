@@ -3,7 +3,7 @@ import TestCase from "../../../common-module/models/TestCase";
 import TestCasesClient from "../http/TestCasesClient";
 
 
-describe('My backend test suite', () => {
+describe('Test cases manipulation on the back-end', () => {
 
     let testCases: Array<TestCase>;
     let testCasesClient = new TestCasesClient();
@@ -13,14 +13,14 @@ describe('My backend test suite', () => {
         await testCasesClient.init();
     })
 
-    it('Deletes existing test cases', async () => {
-        let getTestCasesResponse = await testCasesClient.getAllTestCases();
-        let allTestCases: Array<TestCase> = getTestCasesResponse.data;
-
-        for (const testCase of allTestCases) {
-            await testCasesClient.deleteTestCase(testCase.id);
-        }
-    })
+    // it('Deletes existing test cases', async () => {
+    //     let getTestCasesResponse = await testCasesClient.getAllTestCases();
+    //     let allTestCases: Array<TestCase> = getTestCasesResponse.data;
+    //
+    //     for (const testCase of allTestCases) {
+    //         await testCasesClient.deleteTestCase(testCase.id);
+    //     }
+    // })
 
     it('Adds test cases from a file', async () => {
         for (const testCase of testCases) {
@@ -28,14 +28,14 @@ describe('My backend test suite', () => {
         }
     })
 
-    it('Edits test cases', async () => {
-        let getTestCasesResponse = await testCasesClient.getAllTestCases();
-        let allTestCases: Array<TestCase> = getTestCasesResponse.data;
-
-        for (const testCase of allTestCases) {
-            await testCasesClient.updateTestCase(getEditedTestCase(testCase))
-        }
-    })
+    // it('Edits test cases', async () => {
+    //     let getTestCasesResponse = await testCasesClient.getAllTestCases();
+    //     let allTestCases: Array<TestCase> = getTestCasesResponse.data;
+    //
+    //     for (const testCase of allTestCases) {
+    //         await testCasesClient.updateTestCase(getEditedTestCase(testCase))
+    //     }
+    // })
 
     function getEditedTestCase(testCase: TestCase): TestCase {
         testCase.title = getEditMessage(testCase.title);
