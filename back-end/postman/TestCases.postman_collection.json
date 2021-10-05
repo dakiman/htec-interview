@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "e662eb53-8509-47e0-b3dd-bb45178c907a",
+		"name": "TestCases",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"token\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/candidate/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"candidate",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Testcase",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"new new 123\",\r\n    \"description\": \"123\",\r\n    \"expected_result\": \"123\",\r\n    \"test_steps\": [\r\n        {\r\n            \"value\": \"adsfadsf\"\r\n        },\r\n        {\r\n            \"value\": \"asdfasdfads\"\r\n        }\r\n    ],\r\n    \"automated\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/candidate/testcases",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"candidate",
+						"testcases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Testcases",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"valid_test_case_id\", pm.response.json()[0].id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url}}/candidate/testcases",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"candidate",
+						"testcases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single Testcase",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/candidate/testcases/{{valid_test_case_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"candidate",
+						"testcases",
+						"{{valid_test_case_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Testcase",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"This field previously had 38 \",\r\n    \"description\": \"This field previously had 32 characters\",\r\n    \"expected_result\": \"This field previously had 39 characters\",\r\n    \"test_steps\": [\r\n        {\r\n            \"value\": \"yea\"\r\n        },\r\n        {\r\n            \"value\": \"This field previously had 19 \"\r\n        },\r\n        {\r\n            \"value\": \"yea\"\r\n        }\r\n    ],\r\n    \"automated\": false,\r\n    \"candidate_scenario_id\": 339,\r\n    \"testcaseId\": 8489\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/candidate/testcases/{{valid_test_case_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"candidate",
+						"testcases",
+						"{{valid_test_case_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Testcase",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/candidate/testcases/{{valid_test_case_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"candidate",
+						"testcases",
+						"{{valid_test_case_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

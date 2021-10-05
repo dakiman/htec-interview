@@ -4,7 +4,7 @@
     "**/?(*.)+(spec|test).[jt]s?(x)"
   ],
   "helpers": [
-    "bootstrap/**/*.ts"
+    "./src/bootstrap/**/*.ts"
   ],
   "stopSpecOnExpectationFailure": true,
   "random": false

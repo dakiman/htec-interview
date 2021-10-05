@@ -1,9 +1,8 @@
 import AuthClient from "./AuthClient";
 import axios, {AxiosResponse} from "axios";
 import LoginResponse from "../models/LoginResponse";
-import SingleTestCase from "../models/SingleTestCase";
-import TestCase from "../../common-module/models/types/TestCase";
-import Configuration from "../../app-config";
+import TestCase from "../../../common-module/models/TestCase";
+import Configuration from "../../../app-config";
 
 export default class TestCasesClient {
     private authClient: AuthClient = new AuthClient();
@@ -19,19 +18,19 @@ export default class TestCasesClient {
         }
     }
 
-    public async getAllTestCases(): Promise<AxiosResponse<Array<SingleTestCase>>> {
+    public async getAllTestCases(): Promise<AxiosResponse<Array<TestCase>>> {
         return axios.get('/testcases')
     }
 
-    public async getTestCase(id: number): Promise<AxiosResponse<SingleTestCase>> {
+    public async getTestCase(id: number): Promise<AxiosResponse<TestCase>> {
         return axios.get(`/testcases/${id}`)
     }
 
-    public async createTestCase(requestBody: TestCase): Promise<AxiosResponse<Array<SingleTestCase>>> {
+    public async createTestCase(requestBody: TestCase): Promise<AxiosResponse<Array<TestCase>>> {
         return axios.post('/testcases', requestBody)
     }
 
-    public async updateTestCase(requestBody: TestCase): Promise<AxiosResponse<Array<SingleTestCase>>> {
+    public async updateTestCase(requestBody: TestCase): Promise<AxiosResponse<Array<TestCase>>> {
         return axios.put(`/testcases/${requestBody.testcaseId}`, requestBody);
     }
 

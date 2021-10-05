@@ -1,23 +1,12 @@
 import {browser} from "protractor";
-
+import './bootstrap';
+import Configuration from "../app-config";
 const JasmineConsoleReporter = require('jasmine-console-reporter');
-
 let HtmlReporter = require('protractor-beautiful-reporter');
-
-//TODO maybe move to bootstrap
-const result = require('dotenv').config({
-    path: './.env',
-});
-
-if (result.error) {
-    console.error('Couldnt find environment variables. Make sure you have a `.env` file prepared in the root of the project');
-    throw result.error;
-}
 
 exports.config = {
 
-    //TODO replace with configuration prop
-    baseUrl: 'https://qa-sandbox.ni.htec.rs',
+    baseUrl: Configuration.BASE_URL_FE,
     framework: 'jasmine2',
 
     capabilities: {
@@ -28,9 +17,8 @@ exports.config = {
         // }
     },
 
-    //TODO review
     specs: [
-        './specs/test-case.spec.ts',
+        './src/specs/*.spec.ts',
     ],
 
     onPrepare: async function () {
